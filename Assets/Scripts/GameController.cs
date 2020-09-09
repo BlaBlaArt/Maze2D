@@ -29,5 +29,16 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void StartZone(GameObject zone)
+    {
+        GameObject tmpZone = Instantiate<GameObject>(zone);
 
+        tmpZone.transform.position = new Vector3(1000, 1000, 0);
+        cam.transform.position = new Vector3(1000, 1000, cam.transform.position.z);
+    }
+
+    public void DestroyPlayer()
+    {
+        Destroy(Player.gameObject);
+    }
 }
