@@ -15,8 +15,26 @@ public class SpawnerCellsScript : MonoBehaviour
         GameController = GameObject.FindGameObjectWithTag("GameController");
         Debug.Log(GameController.name);
 
-        SpawnCells();
+        if(this.gameObject.name != "ZoneBackground")
+        {
+            SpawnCells();
+        }
+        else
+        {
+            StartCoroutine("SpawnPlayerOnZone");
+        }
+       
+    }
 
+    IEnumerator SpawnPlayerOnZone()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GameObject SpawnPlayerCell = GameObject.FindGameObjectWithTag("PlyerSpawn");
+        GameObject tmpPlayer = Instantiate<GameObject>(Player);
+        tmpPlayer.transform.position = new Vector3(SpawnPlayerCell.transform.position.x, SpawnPlayerCell.transform.position.y, tmpPlayer.transform.position.z);
+        Camera.main.GetComponent<CameraControllerScript>().PlayerSpawn();
+        GameController.GetComponent<GameController>().Player = tmpPlayer;
     }
 
     private void SpawnCells()

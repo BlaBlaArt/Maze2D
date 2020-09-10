@@ -22,5 +22,6 @@ public class ZoneChooserScript : MonoBehaviour
         Debug.Log("Helo");
         Menu.enabled = false;
         GameController.GetComponent<GameController>().StartZone(MyZone);
+     //   GameController.GetComponent<GameController>().TMPZone = MyZone;
     }
 }

@@ -8,9 +8,13 @@ public class GameController : MonoBehaviour
 
     public GameObject Player;
 
+    public Canvas WinCanvas;
+
     Camera cam;
 
     public GameObject[,] Cells_zone = new GameObject[20, 20];
+
+    public GameObject TMPZone;
 
     private void Start()
     {
@@ -31,14 +35,32 @@ public class GameController : MonoBehaviour
 
     public void StartZone(GameObject zone)
     {
-        GameObject tmpZone = Instantiate<GameObject>(zone);
+        TMPZone = Instantiate<GameObject>(zone);
 
-        tmpZone.transform.position = new Vector3(1000, 1000, 0);
+        TMPZone.transform.position = new Vector3(1000, 1000, 0);
         cam.transform.position = new Vector3(1000, 1000, cam.transform.position.z);
     }
 
     public void DestroyPlayer()
     {
         Destroy(Player.gameObject);
+    }
+
+    public void EndZone()
+    {
+        WinCanvas.enabled = true;
+    }
+
+    public void DestroyZone_Player()
+    {
+        DestroyPlayer();
+
+        Destroy(TMPZone.gameObject);
+    }
+
+    public void RestartZoneAboutPlayer()
+    {
+        GameObject SpawnPlayerCell = GameObject.FindGameObjectWithTag("PlyerSpawn");
+        Player.transform.position = new Vector3(SpawnPlayerCell.transform.position.x, SpawnPlayerCell.transform.position.y, Player.transform.position.z);
     }
 }

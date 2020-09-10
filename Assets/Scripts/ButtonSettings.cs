@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class ButtonSettings : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject GameController;
+
+    public Canvas Menu, ChouseLevel, WinCanvas;
+
+    private void Start()
     {
-        
+        GameController = GameObject.FindGameObjectWithTag("GameController");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChoseLevelEnabled()
     {
-        
+        Menu.enabled = false;
+        ChouseLevel.enabled = true;
+    }
+
+    public void ChoseLevelDisabled()
+    {
+        Menu.enabled = true;
+        ChouseLevel.enabled = false;
+    }
+
+    public void BackToMenu()
+    {
+        Menu.enabled = true;
+        ChouseLevel.enabled = false;
+        WinCanvas.enabled = false;
+        GameController.GetComponent<GameController>().DestroyZone_Player();
+    }
+
+    public void RestartZone()
+    {
+        WinCanvas.enabled = false;
+
+        GameController.GetComponent<GameController>().RestartZoneAboutPlayer();
     }
 }

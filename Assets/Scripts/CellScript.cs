@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CellScript : MonoBehaviour
 {
-    // 1 = nothing, 2 = wall, 3 = enemy
+    // 1 = nothing, 2 = wall, 3 = enemy, 4 = spawnZone
     public int myStat = 0;
 
     int countmouseDown = 0;
@@ -147,6 +147,7 @@ public class CellScript : MonoBehaviour
             case 3:
                 {
                     SetCollor(Collors.spawnPlayer);
+                    this.gameObject.tag = "PlyerSpawn";
                     countmouseDown = 0;
                     break;
                 }

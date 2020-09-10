@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     public float Speed = 1;
 
+    private GameObject GameController;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        GameController = GameObject.FindGameObjectWithTag("GameController");
     }
 
     private void Update()
@@ -26,12 +28,6 @@ public class PlayerController : MonoBehaviour
             MoveVertical();
         }                           
     }
-
-    private void FixedUpdate()
-    {
-
-    }
-
 
     private void MoveHorizontal()
     {
@@ -53,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
         if(collision.GetComponent<CellScript>().myStat == 3)
         {
-
+            GameController.GetComponent<GameController>().EndZone();
         }
     }
 
