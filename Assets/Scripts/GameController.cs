@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 
     public GameObject Player;
 
-    public Canvas WinCanvas;
+    public Canvas WinCanvas, ControllerCanvas;
 
     Camera cam;
 
@@ -39,6 +39,9 @@ public class GameController : MonoBehaviour
 
         TMPZone.transform.position = new Vector3(1000, 1000, 0);
         cam.transform.position = new Vector3(1000, 1000, cam.transform.position.z);
+
+        ControllerCanvas.enabled = true;
+
     }
 
     public void DestroyPlayer()
@@ -48,6 +51,7 @@ public class GameController : MonoBehaviour
 
     public void EndZone()
     {
+        ControllerCanvas.enabled = false;
         WinCanvas.enabled = true;
     }
 

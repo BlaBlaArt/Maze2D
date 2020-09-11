@@ -196,6 +196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  BattlseScene: {fileID: 0}
-  AttackPref: {fileID: 0}
-  AttacksPlayer: {fileID: 0}
+  speed: 2000
+  VarJoystick: {fileID: 0}
+  variableJoystick: {fileID: 0}

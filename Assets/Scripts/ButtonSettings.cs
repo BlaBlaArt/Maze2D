@@ -6,7 +6,7 @@ public class ButtonSettings : MonoBehaviour
 {
     private GameObject GameController;
 
-    public Canvas Menu, ChouseLevel, WinCanvas;
+    public Canvas Menu, ChouseLevel, WinCanvas, ControllerCanvas;
 
     private void Start()
     {
@@ -17,12 +17,15 @@ public class ButtonSettings : MonoBehaviour
     {
         Menu.enabled = false;
         ChouseLevel.enabled = true;
+        ControllerCanvas.enabled = false;
     }
 
     public void ChoseLevelDisabled()
     {
         Menu.enabled = true;
         ChouseLevel.enabled = false;
+        ControllerCanvas.enabled = false;
+
     }
 
     public void BackToMenu()
@@ -30,12 +33,16 @@ public class ButtonSettings : MonoBehaviour
         Menu.enabled = true;
         ChouseLevel.enabled = false;
         WinCanvas.enabled = false;
+        ControllerCanvas.enabled = false;
+
         GameController.GetComponent<GameController>().DestroyZone_Player();
     }
 
     public void RestartZone()
     {
         WinCanvas.enabled = false;
+        ControllerCanvas.enabled = true;
+
 
         GameController.GetComponent<GameController>().RestartZoneAboutPlayer();
     }

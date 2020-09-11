@@ -10,10 +10,27 @@ public class PlayerController : MonoBehaviour
 
     private GameObject GameController;
 
+    public float speed;
+
+    public GameObject VarJoystick;
+
+    public VariableJoystick variableJoystick;
+
+
     private void Start()
     {
+        VarJoystick = GameObject.FindGameObjectWithTag("VariableJoystick");
+
+        variableJoystick = VarJoystick.GetComponent<VariableJoystick>();
+
         rb = GetComponent<Rigidbody2D>();
         GameController = GameObject.FindGameObjectWithTag("GameController");
+    }
+
+    public void FixedUpdate()
+    {
+        Vector2 direction = Vector2.up * variableJoystick.Vertical + Vector2.right * variableJoystick.Horizontal;
+        rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 
     private void Update()
@@ -43,9 +60,9 @@ public class PlayerController : MonoBehaviour
     {
         // Debug.Log("hello" + collision.name);
 
-        transform.position = collision.transform.position;
+  /*      transform.position = collision.transform.position;
         rb.velocity = Vector2.zero;
-        collision.GetComponent<CellScript>().ChangeMyObject(this.gameObject);
+        collision.GetComponent<CellScript>().ChangeMyObject(this.gameObject);*/
 
         if(collision.GetComponent<CellScript>().myStat == 3)
         {
@@ -53,14 +70,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
 
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        collision.GetComponent<CellScript>().ChangeMyObject(null);
-    }
 }
