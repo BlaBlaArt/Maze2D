@@ -6,7 +6,7 @@ public class ButtonSettings : MonoBehaviour
 {
     private GameObject GameController;
 
-    public Canvas Menu, ChouseLevel, WinCanvas, ControllerCanvas;
+    public Canvas Menu, ChouseLevel, WinCanvas, ControllerCanvas, OnPauseCanvas, OnPlay;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class ButtonSettings : MonoBehaviour
         ChouseLevel.enabled = false;
         WinCanvas.enabled = false;
         ControllerCanvas.enabled = false;
-
+        OnPlay.enabled = false;
         GameController.GetComponent<GameController>().DestroyZone_Player();
     }
 
@@ -42,8 +42,25 @@ public class ButtonSettings : MonoBehaviour
     {
         WinCanvas.enabled = false;
         ControllerCanvas.enabled = true;
+        OnPlay.enabled = true;
 
 
         GameController.GetComponent<GameController>().RestartZoneAboutPlayer();
+    }
+
+    public void OnPlay_OpenPause()
+    {
+        OnPlay.enabled = false;
+
+        ControllerCanvas.enabled = false;
+        OnPauseCanvas.enabled = true;
+    }
+
+    public void OnPlay_ClosePause()
+    {
+        OnPlay.enabled = true;
+
+        ControllerCanvas.enabled = true;
+        OnPauseCanvas.enabled = false;
     }
 }
