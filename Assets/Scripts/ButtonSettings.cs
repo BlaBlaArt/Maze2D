@@ -6,7 +6,7 @@ public class ButtonSettings : MonoBehaviour
 {
     private GameObject GameController;
 
-    public Canvas Menu, ChouseLevel, WinCanvas, ControllerCanvas, OnPauseCanvas, OnPlay;
+    public Canvas Menu, ChouseLevel, WinCanvas, ControllerCanvas, OnPauseCanvas, OnPlay, MapCanvas;
 
     private void Start()
     {
@@ -15,6 +15,8 @@ public class ButtonSettings : MonoBehaviour
 
     public void ChoseLevelEnabled()
     {
+        MapCanvas.enabled = true;
+        Camera.main.GetComponent<CameraControllerScript>().MapActive = true;
         Menu.enabled = false;
         ChouseLevel.enabled = true;
         ControllerCanvas.enabled = false;
@@ -22,6 +24,8 @@ public class ButtonSettings : MonoBehaviour
 
     public void ChoseLevelDisabled()
     {
+        MapCanvas.enabled = false;
+        Camera.main.GetComponent<CameraControllerScript>().MapActive = false;
         Menu.enabled = true;
         ChouseLevel.enabled = false;
         ControllerCanvas.enabled = false;

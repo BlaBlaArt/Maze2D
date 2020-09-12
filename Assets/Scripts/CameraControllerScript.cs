@@ -10,6 +10,8 @@ public class CameraControllerScript : MonoBehaviour
 
     private Vector2 MousePos;
 
+    public bool MapActive;
+
     public float MaxSpeed;
     float cntrlspd;
     private float controllerSpeed
@@ -43,39 +45,39 @@ public class CameraControllerScript : MonoBehaviour
 
     private void Start()
     {
+        MapActive = false;
         rbControl = CameraControl.GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("down");
-            MousePos = Input.mousePosition;
-        }
-
-        if (Input.GetMouseButton(0))
+        if (MapActive)
         {
 
-            Debug.Log("slide");
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("down");
+                MousePos = Input.mousePosition;
+            }
 
-            controllerSpeed = (MousePos.y - Input.mousePosition.y) *Speed * Time.deltaTime;
+            if (Input.GetMouseButton(0))
+            {
 
-            rbControl.velocity = new Vector2(0, controllerSpeed );
+                Debug.Log("slide");
 
-         //   rbControl.AddForce(new Vector2(0 , Input.mousePosition.y - MousePos.y) * Speed * Time.deltaTime
-            //    , ForceMode2D.Force);
+                controllerSpeed = (MousePos.y - Input.mousePosition.y) * Speed * Time.deltaTime;
 
-           /* CameraControl.transform.Translate(transform.position.x + (MousePos.x - Input.mousePosition.x) * Speed
-                , transform.position.y + (MousePos.y - Input.mousePosition.y) * Speed
-                , /*transform.position.z 0);*/
+                rbControl.velocity = new Vector2(0, controllerSpeed);
+
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                MousePos = new Vector2(0, 0);
+                rbControl.velocity = new Vector2(0, 0);
+            }
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            MousePos = new Vector2(0, 0);
-            rbControl.velocity = new Vector2(0,0);
-        }
     }
 
     private void Update()
