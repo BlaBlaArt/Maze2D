@@ -992,6 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  MapActive: 0
   MaxSpeed: 20
   CameraControl: {fileID: 236053454}
   Speed: 10
@@ -1513,7 +1514,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676335961}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 519420031}
@@ -2126,6 +2127,7 @@ MonoBehaviour:
   ControllerCanvas: {fileID: 230037924}
   OnPauseCanvas: {fileID: 1538489071}
   OnPlay: {fileID: 1019935326}
+  MapCanvas: {fileID: 676335965}
 --- !u!4 &973353415
 Transform:
   m_ObjectHideFlags: 0
@@ -3858,7 +3860,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011562946}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
