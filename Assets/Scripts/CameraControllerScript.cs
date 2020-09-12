@@ -8,6 +8,76 @@ public class CameraControllerScript : MonoBehaviour
 
     public static bool checkPlayer = true;
 
+    private Vector2 MousePos;
+
+    public float MaxSpeed;
+    float cntrlspd;
+    private float controllerSpeed
+    {
+        set
+        {
+
+            cntrlspd = value;
+            if(Mathf.Abs(cntrlspd) >= MaxSpeed)
+            {
+                if(cntrlspd > 0)
+                {
+                    cntrlspd = MaxSpeed;
+                }
+                else
+                {
+                    cntrlspd = -MaxSpeed;
+                }
+            }
+        }
+        get
+        {
+            return cntrlspd;
+        }
+    }
+
+    public GameObject CameraControl;
+    Rigidbody2D rbControl;
+
+    public float Speed;
+
+    private void Start()
+    {
+        rbControl = CameraControl.GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("down");
+            MousePos = Input.mousePosition;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+
+            Debug.Log("slide");
+
+            controllerSpeed = (MousePos.y - Input.mousePosition.y) *Speed * Time.deltaTime;
+
+            rbControl.velocity = new Vector2(0, controllerSpeed );
+
+         //   rbControl.AddForce(new Vector2(0 , Input.mousePosition.y - MousePos.y) * Speed * Time.deltaTime
+            //    , ForceMode2D.Force);
+
+           /* CameraControl.transform.Translate(transform.position.x + (MousePos.x - Input.mousePosition.x) * Speed
+                , transform.position.y + (MousePos.y - Input.mousePosition.y) * Speed
+                , /*transform.position.z 0);*/
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            MousePos = new Vector2(0, 0);
+            rbControl.velocity = new Vector2(0,0);
+        }
+    }
+
     private void Update()
     {
         if (checkPlayer)
