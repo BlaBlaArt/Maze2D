@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 
     public GameObject Player;
 
-    public Canvas WinCanvas, ControllerCanvas, OnPlay;
+    public Canvas WinCanvas, ControllerCanvas, OnPlay, MapCanvas;
 
     Camera cam;
 
@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
         ControllerCanvas.enabled = true;
         OnPlay.enabled = true;
 
-
+        MapCanvas.enabled = false;
     }
 
     public void DestroyPlayer()
@@ -53,6 +53,10 @@ public class GameController : MonoBehaviour
 
     public void EndZone()
     {
+        Debug.Log("EndZone");
+
+        cam.transform.position = new Vector3(0, 0, cam.transform.position.z);
+
         ControllerCanvas.enabled = false;
         OnPlay.enabled = false;
         WinCanvas.enabled = true;

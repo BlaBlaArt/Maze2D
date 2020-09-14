@@ -8,6 +8,7 @@ public class ZoneChooserScript : MonoBehaviour
     public GameObject MyZone;
     GameObject GameController;
 
+
     public Canvas Menu;
 
     private void Start()
@@ -19,9 +20,10 @@ public class ZoneChooserScript : MonoBehaviour
     private void OnMouseDown()
     {
         GameController.GetComponent<GameController>().DestroyPlayer();
-        Debug.Log("Helo");
+       // Debug.Log("Helo");
         Menu.enabled = false;
         GameController.GetComponent<GameController>().StartZone(MyZone);
+
      //   GameController.GetComponent<GameController>().TMPZone = MyZone;
     }
 }

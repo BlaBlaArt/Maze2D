@@ -16,7 +16,7 @@ public class ButtonSettings : MonoBehaviour
     public void ChoseLevelEnabled()
     {
         MapCanvas.enabled = true;
-        Camera.main.GetComponent<CameraControllerScript>().MapActive = true;
+   
         Menu.enabled = false;
         ChouseLevel.enabled = true;
         ControllerCanvas.enabled = false;
@@ -25,7 +25,7 @@ public class ButtonSettings : MonoBehaviour
     public void ChoseLevelDisabled()
     {
         MapCanvas.enabled = false;
-        Camera.main.GetComponent<CameraControllerScript>().MapActive = false;
+
         Menu.enabled = true;
         ChouseLevel.enabled = false;
         ControllerCanvas.enabled = false;
@@ -34,12 +34,16 @@ public class ButtonSettings : MonoBehaviour
 
     public void BackToMenu()
     {
+        Debug.Log("Backtomenu");
+
         Menu.enabled = true;
         ChouseLevel.enabled = false;
         WinCanvas.enabled = false;
         ControllerCanvas.enabled = false;
         OnPlay.enabled = false;
         GameController.GetComponent<GameController>().DestroyZone_Player();
+
+        StartCoroutine("ReturnCamera");
     }
 
     public void RestartZone()
@@ -66,5 +70,13 @@ public class ButtonSettings : MonoBehaviour
 
         ControllerCanvas.enabled = true;
         OnPauseCanvas.enabled = false;
+    }
+
+    IEnumerator ReturnCamera()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Camera.main.transform.position = new Vector3(0, 0, Camera.main.transform.position.z);
+
+
     }
 }
